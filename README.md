@@ -10,9 +10,11 @@ pip install -r requirements.txt
 -------------------------------------------
 
 **Combien de mesures aura un seul capteur sur 30 jours à raison d’une toutes les 10 minutes ?**
+
 6 (mesure) * 24 (h/jour) * 30 (jours) = 4320 mesures par capteur
 
 **Combien de lignes aura ton fichier si tu as 100 capteurs ?**
+
 100 (capteur) * 4320 (lignes) = 432 000 lignes
 
 **Quelles seront les colonnes de ton tableau (DataFrame) ?**
