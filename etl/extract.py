@@ -4,6 +4,8 @@ import os
 #Fonction pour importé le fichier csv et le traités
 def extract_data(filepath):
 
+    print("Fichier réellement lu :", os.path.abspath(filepath))
+
     #Variable dataframe pour lire le csv
     df = pd.read_csv(filepath)
 
@@ -20,9 +22,7 @@ def extract_data(filepath):
     expect_columns = ['timestamp', 'sensor_id', 'temperature']
     if check_columns != expect_columns:
         print("Erreur des colonnes")
-
-    print("Colonne lues :", list(df.columns))
-
+        
     return df
-print("Colonne lues :", list(df.columns))
-extract_data("data/simulated/sensor_data.csv")
+
+extract_data("vps-etl-dashboard\data\simulated\sensor_data.csv")
