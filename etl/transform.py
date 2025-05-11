@@ -26,6 +26,31 @@ def transform_data(df):
     #Permet de faire la comparaison avec le initial_shape
     final_shape = df.shape
 
+    #df_valid = dataframe[(dataframe ["temperature"] supérieure ou égale a 30 et (dataframe["temperature"] inferieure ou égale a 100)
+    df_valid = df[(df["temperature"] >= 30) & (df["temperature"] <= 100 )]
+    #print("df_valide", df_valid)
+
+    #temperature de rejet = (dataframe["temperature"] inférieur a 30) ou (df["temperature"] superieur a 100)
+    temp_rejets = (df["temperature"] < 30) | (df["temperature"] > 100)
+    #print("temp_rejets", temp_rejets)
+
+    #df_rejets = dataframe[temp_rejets] On extrait les lignes rejetées de df en appliquant le masque temp_rejets
+    df_rejets = df[temp_rejets]
+    #print("df_rejets", df_rejets)
+
+    nb_lignes_rejetées = df_rejets.shape[0]
+
+    print(f"Sauvegarde des temperature anormale en cour...: {nb_lignes_rejetées} lignes")
+
+    #On envoie les lignes df_rejets vers un csv
+    df_rejets.to_csv("data/intermediate/dropped_temperature.csv", index=False)
+
+    print(f"Sauvegarde terminée: {nb_lignes_rejetées} lignes")
+
+    nb_rejetees = df.shape[0] - df_valid.shape[0]
+
+    print(f"Lignes supprimées (température hors normes) : {nb_rejetees}")
+
     print(f"Lignes supprimées (valeurs manquantes) : {initial_shape[0] - final_shape[0]}")
 
 #dataframe_raw = le chemin du csv
