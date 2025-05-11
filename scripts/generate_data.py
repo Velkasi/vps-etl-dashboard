@@ -2,6 +2,9 @@ import pandas as pd
 import numpy as np
 import sqlalchemy
 import datetime
+import os
+
+os.makedirs("data/simulated", exist_ok=True)
 
 #Création d'une liste sensors
 sensors = []
@@ -47,4 +50,10 @@ dataframe = pd.DataFrame({
 print(dataframe.head())
 print(dataframe.shape)
 
-df.to_csv("data/simulated/sensor_data.csv", index=False)
+assert dataframe.shape[0] == 432000
+
+print("Enregistrement du fichier...")
+
+dataframe.to_csv("data/simulated/sensor_data.csv", index=False)
+
+print("Fichier enregistré avec succès.")
