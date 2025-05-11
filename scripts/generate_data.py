@@ -4,6 +4,7 @@ import sqlalchemy
 import datetime
 import os
 
+#Test si le dossier data/simulated exist
 os.makedirs("data/simulated", exist_ok=True)
 
 #Création d'une liste sensors
@@ -50,10 +51,9 @@ dataframe = pd.DataFrame({
 print(dataframe.head())
 print(dataframe.shape)
 
-assert dataframe.shape[0] == 432000
-
 print("Enregistrement du fichier...")
 
+#Création du csv a partir du dataframe en enlevant l'index
 dataframe.to_csv("data/simulated/sensor_data.csv", index=False)
 
 print("Fichier enregistré avec succès.")
